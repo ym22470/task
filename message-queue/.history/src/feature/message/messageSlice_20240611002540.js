@@ -1,0 +1,24 @@
+import { createSlice } from '@reduxjs/toolkit';
+
+export const messagesSlice = createSlice({
+    name: 'messages',
+    initialState: [], // This should be an empty array
+    reducers: {
+        addMessage: {
+            reducer: (state, action) => {
+                state.push(action.payload);
+            },
+            // prepare: (text) => {
+            //     return { payload: { id: nextMessageId++, text, timestamp: Date.now() } };
+            // },
+        },
+        removeMessage: (state, action) => {
+            const newState = state.filter(message => message.id !== action.payload);
+            return newState;
+        },
+    },
+});
+
+export const { addMessage, removeMessage } = messagesSlice.actions;
+
+export default messagesSlice.reducer;
